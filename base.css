@@ -1,0 +1,132 @@
+@charset "UTF-8";
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+a:hover,
+a:active {
+    outline: 0;
+}
+
+textarea {
+    vertical-align: top;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+body {
+    margin: 20px 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #402d16;
+    background-color: #eee9da;
+}
+
+#contents	{
+  padding: 20px 20px 40px;
+  background-color: #fff;
+}
+
+#contents h1	{ 	
+	font-size: 200%;
+	text-align: center;
+	border-bottom: solid 2px #CCC;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.error {
+    color: #ff0000;
+    font-weight:bold;
+}
+
+h1 {
+    text-align: center;
+    font-size: 200%;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.btn {    
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    margin: 40px auto 20px auto;
+    padding: 7px 0;
+}
+.btn_small{
+    width: 120px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 80%;
+    margin: 40px auto 20px auto;
+    padding: 7px 0;
+}
+.btn_big {
+    display: block;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    margin: 40px auto 20px auto;
+    padding: 7px 0;
+}
+
+table.normal{
+    border-top:1px solid #663300;
+    border-left:1px solid #663300;
+    border-collapse:collapse;
+    border-spacing:0;
+    background-color:#ffffff;
+    empty-cells:show;
+}
+
+table.normal th{
+    border-right:1px solid #663300;
+    border-bottom:1px solid #663300;
+    color:#330000;
+    background-color:#996633;
+    background-position:left top;
+    padding:0.3em 1em;
+    text-align:center;
+}
+
+table.normal  td{
+    border-right:1px solid #663300;
+    border-bottom:1px solid #663300;
+    padding:0.3em 1em;
+}
+
+/**
+ * êÅÇ´èoÇµ
+ */
+/* balloon-3 top-left */
+.balloon-3-top-left {
+	position: relative;
+	display: inline-block;
+	padding: 0 15px;
+	width: auto;
+	min-width: 115px;
+	min-height: 40px;
+	color: #F6F6F6;
+	line-height: 40px;
+	text-align: left;
+	background: #19283C;
+	z-index: 0;
+}
+.balloon-3-top-left:after {
+	content: "";
+	position: absolute;
+	top: -15px; left: 0;
+	margin-left: 0;
+	display: block;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 0 15px 20px;
+	border-color: transparent transparent #19283C transparent;
+	z-index: -1;
+}
