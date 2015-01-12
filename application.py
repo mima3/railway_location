@@ -21,16 +21,23 @@ def setup(conf):
 
 @app.get('/railway')
 def homePage():
-    railways = railway_db.get_railway_line()
-    return template('railway', railways=railways).replace('\n', '');
+    operation_company = railway_db.get_operation_company()
+    return template('railway', operation_company=operation_company).replace('\n', '');
+
+@app.get('/json/get_railway_line')
+def getRailwayLine():
+    operation_company = request.query.operation_company
+    railways = railway_db.get_railway_line(operation_company)
+    return json.dumps(railways)
 
 
 @app.get('/json/get_railway_curve')
 def getRailwayCurve():
     res = {'data' : None, 'result':0, 'error': ''}
     railway = request.query.railway
-    railroad_curve = railway_db.get_railroad_curve(railway_line=railway)
-    station = railway_db.get_station_list(railway_line=railway)
+    operation_company = request.query.operation_company
+    railroad_curve = railway_db.get_railroad_curve(railway_line=railway, operation_company=operation_company)
+    station = railway_db.get_station_list(railway_line=railway, operation_company=operation_company)
     response.content_type = 'application/json;charset=utf-8'
     res['railroad_curve'] = railroad_curve
     res['station'] = station

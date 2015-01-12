@@ -15,14 +15,17 @@
 </head>
 <body>
   <div id="contents">
-    路線名：<select id="selRailway">
+    運行会社名：<select id="selOperationCompany">
       <option value = ""></option>
-      %for railway in railways:
-        <option value = "{{railway}}">{{railway}}</option>
+      %for c in operation_company:
+        <option value = "{{c}}">{{c}}</option>
       %end
     </select>
+    路線名：<select id="selRailway"><option>　　　　　　　　　　</option></select>
     <buttion id="showRailway">路線表示</buttion>
     <div id="map_canvas" style="width: 100%; height: 400px"></div>
+    <p>このデータは以下から取得したものです</p>
+    <p><a href="http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-v2_2.html">国土数値情報　鉄道データ</a></p>
   </div>
 </body>
 </html>

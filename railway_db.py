@@ -219,9 +219,12 @@ def import_railway(xml):
             Station.insert_many(insert_buff).execute()
 
 
-def get_railway_line():
+def get_railway_line(operation_company):
     ret = []
-    rows = Station.select(fn.Distinct(Station.railway_line_name))
+    query = Station.select(fn.Distinct(Station.railway_line_name))
+    if operation_company:
+        cond = (Station.operation_company == operation_company)
+    rows = query.where(cond)
     for r in rows:
         ret.append(r.railway_line_name)
     return ret

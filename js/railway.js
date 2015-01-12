@@ -9,23 +9,68 @@ $(function() {
       document.getElementById('map_canvas'),
       mapOptions
     );
-    var railwayLines=[];
-    var stationLines=[];
-    var stationInfo=[];
+    $('#selOperationCompany').select2({
+      width: 'resolve' ,
+      dropdownAutoWidth: true
+    });
+    $('#selOperationCompany').change(function() {
+      var operationCompany = $('#selOperationCompany').val();
+      if (!operationCompany) {
+        return;
+      }
+      $('#selRailway').select2('val', '');
+      $('#selRailway').empty();
+      util.getJson(
+        '/railway_location/json/get_railway_line',
+        {
+          operation_company: operationCompany
+        },
+        function (errCode, result) {
+          if (errCode) {
+            return;
+          }
+          var opt = $('<option>').html('').val('');
+          $('#selRailway').append(opt);
+          for (var i = 0; i < result.length; ++i) {
+            var opt = $('<option>').html(result[i]).val(result[i]);
+            $('#selRailway').append(opt);
+          }
+        },
+        function() {
+          $.blockUI({ message: '<img src="/railway_location/img/loading.gif" />' });
+        },
+        function() {
+          $.unblockUI();
+        }
+      );
+    }).keyup(function() {
+      $(this).blur().focus();
+    });
+
     $('#selRailway').select2({
       width: 'resolve' ,
       dropdownAutoWidth: true
     });
+
+    var railwayLines=[];
+    var stationLines=[];
+    var stationInfo=[];
     $('#showRailway').button().click(function() {
       var railway = $('#selRailway').val();
+      var operationCompany = $('#selOperationCompany').val();
+
       console.log(railway);
       if (!railway) {
+        return;
+      }
+      if (!operationCompany) {
         return;
       }
       util.getJson(
         '/railway_location/json/get_railway_curve',
         {
-          railway: railway
+          railway: railway,
+          operation_company: operationCompany
         },
         function (errCode, result) {
           console.log(errCode);
